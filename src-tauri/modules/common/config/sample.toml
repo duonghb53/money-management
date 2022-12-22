@@ -1,0 +1,13 @@
+[environment]
+environment = "dev" # prod | dev
+
+[commondb]
+host = ""
+port = 5432
+user = ""
+database = ""
+password = ""
+
+[aws]
+region = ""
+account_id = ""
