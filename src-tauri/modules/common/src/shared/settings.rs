@@ -1,14 +1,9 @@
 use crate::*;
+use anyhow::Result;
+use config_file::{ConfigFileError, FromConfigFile};
 use derive_getters::Getters;
 use derive_new::new;
-use serde::{Deserialize, Serialize};
-use std::env;
-use config::{Config, ConfigError, File};
-use std::str::FromStr;
-use anyhow::Result;
-
-const RUN_MODE: &str = "RUN_MODE";
-const RDS_SECRET: &str = "RDS_SECRET";
+use serde::Deserialize;
 
 #[derive(Debug, Clone, new, Getters, Deserialize)]
 pub struct Environment {
@@ -50,34 +45,22 @@ pub struct Settings {
 }
 
 impl Settings {
-    pub async fn instance() -> Result<Box<Settings>> {
+    pub fn instance() -> Result<Box<Settings>> {
         static mut SINGLETON: Option<Box<Settings>> = None;
         unsafe {
             if let Some(setting) = SINGLETON.clone() {
                 return Ok(setting);
             }
 
-            let setting: Box<Settings> = Box::new(Settings::new().await?);
+            let setting: Box<Settings> = Box::new(Settings::new()?);
             SINGLETON = Some(setting.clone());
             Ok(setting)
         }
     }
 
-    pub async fn new() -> Result<Self, ConfigError> {
-        let mut s = Config::new();
-        // デフォルト値をセット
-        s.merge(File::with_name("config/default"))?;
-        // 環境毎の値をセット
-        // TODO: EnumによるRUN_MODEのチェック
-        let env = env::var(RUN_MODE).unwrap_or_else(|_| "local".into());
-        s.merge(File::with_name(&format!("config/{}", env)).required(false))?;
-        let mut rds_secret_str: Option<String> = None;
-        if let Some(str) = env::var(RDS_SECRET).ok() {
-            // Secret Managerから環境変数で上書き
-            rds_secret_str = Some(str);
-        } 
-        
-        s.try_into()
+    pub fn new() -> Result<Self, ConfigFileError> {
+        let config = Settings::from_config_file(CONFIG_FILE)?;
+        Ok(config)
     }
 
     pub fn create_database_url(

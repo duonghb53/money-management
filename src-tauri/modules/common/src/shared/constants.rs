@@ -1,0 +1,1 @@
+pub const CONFIG_FILE: &str = "modules/common/config/local.toml";

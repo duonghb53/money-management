@@ -11,4 +11,4 @@ derive-getters = "0.2.0"
 derive-new = "0.5.8"
 anyhow = "1.0.53"
 serde = { version = "1.0.126", features = ["derive"] }
-config = "0.10.1"
+config-file = "0.2.3"

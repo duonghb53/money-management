@@ -251,9 +251,22 @@ name = "common"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "config-file",
  "derive-getters",
  "derive-new",
  "sea-orm",
+ "serde",
+]
+
+[[package]]
+name = "config-file"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "df51e72c150781d2c7d4cbcb0b803277caaa80476786994a62961a8f1010dafb"
+dependencies = [
+ "serde",
+ "thiserror",
+ "toml",
 ]
 
 [[package]]

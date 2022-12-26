@@ -2,7 +2,6 @@ use sea_orm::{Database, DatabaseConnection, DbErr};
 use serde::de::Error;
 use anyhow::{bail, Result};
 
-use crate::*;
 
 use super::Settings;
 
@@ -20,14 +19,7 @@ impl Context {
     pub async fn connect(
         settings: Settings,
     ) -> Result<Context> {
-        let db_url = Settings::create_database_url(
-            settings.commondb().user(), 
-            settings.commondb().password(), 
-            settings.commondb().host(), 
-            settings.commondb().port(), 
-            settings.commondb().database()
-        );
-        
+        let db_url = settings.commondb().database_url();    
         let connection = connect(db_url).await?;
         Ok(Context{
             settings,
