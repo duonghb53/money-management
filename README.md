@@ -93,3 +93,15 @@ ALTER TABLE "investment" ADD FOREIGN KEY ("created_by") REFERENCES "users" ("id"
 ALTER TABLE "investment" ADD FOREIGN KEY ("category_id") REFERENCES "category" ("id");
 
 ```
+## Generate Entities
+Install `sear-orm-cli`
+```sh
+cargo install sea-orm-cli
+```
+Generate
+```sh
+sea-orm-cli generate entity \
+-u postgresql://user:password@host:port/database_name \
+-s schema \
+-o output_folder
+```
