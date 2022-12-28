@@ -4,6 +4,6 @@ pub use super::category::Entity as Category;
 pub use super::investment::Entity as Investment;
 pub use super::invoice::Entity as Invoice;
 pub use super::item::Entity as Item;
-pub use super::paymeny_method::Entity as PaymenyMethod;
+pub use super::payment_method::Entity as PaymentMethod;
 pub use super::role::Entity as Role;
 pub use super::users::Entity as Users;

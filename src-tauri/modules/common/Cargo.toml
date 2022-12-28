@@ -12,3 +12,4 @@ derive-new = "0.5.8"
 anyhow = "1.0.53"
 serde = { version = "1.0.126", features = ["derive"] }
 config-file = "0.2.3"
+async-trait = "0.1.60"

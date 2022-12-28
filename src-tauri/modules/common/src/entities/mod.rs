@@ -6,6 +6,6 @@ pub mod category;
 pub mod investment;
 pub mod invoice;
 pub mod item;
-pub mod paymeny_method;
+pub mod payment_method;
 pub mod role;
 pub mod users;

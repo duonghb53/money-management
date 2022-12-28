@@ -1,6 +1,9 @@
 pub mod shared;
+pub mod entities;
+pub mod repository;
+pub mod request;
+pub mod collections;
 pub use shared::*;
-// pub mod entities;
 
 #[cfg(test)]
 mod tests {
