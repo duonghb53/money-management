@@ -7,8 +7,8 @@ use super::Settings;
 
 #[derive(Debug, Clone)]
 pub struct Context {
-    settings: Settings,
-    connection: DatabaseConnection,
+    pub settings: Settings,
+    pub connection: DatabaseConnection,
 }
 
 impl Context {

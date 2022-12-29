@@ -3,6 +3,7 @@ pub mod entities;
 pub mod repository;
 pub mod request;
 pub mod collections;
+pub mod use_cases;
 pub use shared::*;
 
 #[cfg(test)]
